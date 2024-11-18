@@ -78,7 +78,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'bilateral',
           title: {
             fi: 'Kahdenvälinen',
-            sv: 'Bilateral',
+            sv: '[SV] Kahdenvälinen',
             en: 'Bilateral',
           },
         },
@@ -87,7 +87,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'multilateral',
           title: {
             fi: 'Monenkeskeinen',
-            sv: 'Multilateral',
+            sv: '[SV] Monenkeskeinen',
             en: 'Multilateral',
           },
         },
@@ -118,7 +118,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'university',
           title: {
             fi: 'Yliopisto',
-            sv: 'Universitet',
+            sv: '[SV] Yliopisto',
             en: 'University',
           },
         },

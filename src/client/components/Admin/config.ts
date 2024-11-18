@@ -18,12 +18,12 @@ export const allSelection: Dimension = {
   color: '#000000',
   title: {
     fi: 'Kaikki',
-    sv: 'All',
+    sv: '[SV] All',
     en: 'All',
   },
   text: {
     fi: 'Kaikki',
-    sv: 'All',
+    sv: '[SV] All',
     en: 'All',
   },
 }
@@ -52,7 +52,7 @@ export const questionTypes: InfoType[] = [
     id: 'singleChoice',
     title: {
       fi: 'Yksittäis valinta',
-      sv: 'Yksittäis valinta',
+      sv: '[SV] Yksittäis valinta',
       en: 'Yksittäis valinta',
     },
   },
@@ -60,7 +60,7 @@ export const questionTypes: InfoType[] = [
     id: 'multipleChoice',
     title: {
       fi: 'Monivalinta',
-      sv: 'Monivalinta',
+      sv: '[SV] Monivalinta',
       en: 'Monivalinta',
     },
   },
@@ -68,7 +68,7 @@ export const questionTypes: InfoType[] = [
     id: 'info',
     title: {
       fi: 'Infokenttä',
-      sv: 'Infokenttä',
+      sv: '[SV] Infokenttä',
       en: 'Infokenttä',
     },
   },
