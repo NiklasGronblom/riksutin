@@ -8,7 +8,7 @@ const getQuestionData = async (): Promise<Question[]> => [
     priority: 0,
     title: {
       fi: 'Ilmoittajan nimi',
-      sv: 'Name of the person providing information',
+      sv: '[SV] Ilmoittajan nimi',
       en: 'Name of the person providing information',
     },
     text: {
@@ -26,12 +26,12 @@ const getQuestionData = async (): Promise<Question[]> => [
     priority: 1,
     title: {
       fi: 'Yhteistyön vastuuyksikkö HY:ssa',
-      sv: 'UH unit responsible for collaboration',
+      sv: '[SV] Yhteistyön vastuuyksikkö HY:ssa',
       en: 'UH unit responsible for collaboration',
     },
     text: {
       fi: 'Kirjoita tähän sen yksikön nimi, jolla HY:ssa on päävastuu tässä yhteistyöstä.',
-      sv: '',
+      sv: '[SV] Kirjoita tähän sen yksikön nimi, jolla HY:ssa on päävastuu tässä yhteistyöstä.',
       en: 'Please provide the name of UH unit, which has the main responsibility of the collaboration in question.',
     },
     optionData: { type: 'text', options: [] },
@@ -44,12 +44,12 @@ const getQuestionData = async (): Promise<Question[]> => [
     priority: 2,
     title: {
       fi: 'Yhteistyön/yhteistyöprojektin nimi',
-      sv: 'Name of the collaboration/project',
+      sv: '[SV] Yhteistyön/yhteistyöprojektin nimi',
       en: 'Name of the collaboration/project',
     },
     text: {
       fi: 'Anna yhteistyöprojektin nimi tai lyhyt kuvaus yhteistyöstä',
-      sv: '',
+      sv: '[SV] Anna yhteistyöprojektin nimi tai lyhyt kuvaus yhteistyöstä',
       en: 'Please enter the name of the project/collaboration or a short description',
     },
     optionData: { type: 'text', options: [] },
@@ -62,12 +62,12 @@ const getQuestionData = async (): Promise<Question[]> => [
     priority: 3,
     title: {
       fi: 'Yhteistyökonsortion koostumus',
-      sv: 'Composition of consortium',
+      sv: '[SV] Yhteistyökonsortion koostumus',
       en: 'Composition of consortium',
     },
     text: {
       fi: 'Valitse annetuista vaihtoehdoista yhteistyötäsi parhaiten kuvaava vaihtoehto.',
-      sv: '',
+      sv: '[SV] Valitse annetuista vaihtoehdoista yhteistyötäsi parhaiten kuvaava vaihtoehto.',
       en: 'Choose the most fitting description of your collaboration from among the alternatives.',
     },
     optionData: {
@@ -102,12 +102,12 @@ const getQuestionData = async (): Promise<Question[]> => [
     priority: 6,
     title: {
       fi: 'Yhteistyöorganisaation tyyppi',
-      sv: 'Type of the partner organisation',
+      sv: '[SV] Yhteistyöorganisaation tyyppi',
       en: 'Type of the partner organisation',
     },
     text: {
       fi: 'Valitse listasta yhteistyökumppania parhaiten kuvaava vaihtoehto',
-      sv: '',
+      sv: '[SV] Valitse listasta yhteistyökumppania parhaiten kuvaava vaihtoehto',
       en: 'Select the alternative best describing the partner organisation',
     },
     optionData: {
@@ -118,7 +118,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'university',
           title: {
             fi: 'Yliopisto',
-            sv: 'University',
+            sv: 'Universitet',
             en: 'University',
           },
         },
@@ -127,7 +127,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'otherResearchOrg',
           title: {
             fi: 'Muu tutkimuslaitos',
-            sv: 'Other Research Organisation',
+            sv: '[SV] Muu tutkimuslaitos',
             en: 'Other Research Organisation',
           },
         },
@@ -136,7 +136,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'company',
           title: {
             fi: 'Yritys',
-            sv: 'Private company',
+            sv: '[SV] Yritys',
             en: 'Private company',
           },
         },
@@ -145,7 +145,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'ngo',
           title: {
             fi: 'Kansalaisjärjestö',
-            sv: 'NGO',
+            sv: '[SV] Kansalaisjärjestö',
             en: 'NGO',
           },
         },
@@ -154,7 +154,7 @@ const getQuestionData = async (): Promise<Question[]> => [
           label: 'otherType',
           title: {
             fi: 'Muu',
-            sv: 'Other',
+            sv: '[SV] Muu',
             en: 'Other',
           },
         },
@@ -169,12 +169,12 @@ const getQuestionData = async (): Promise<Question[]> => [
     priority: 20,
     title: {
       fi: 'Lisätietoja',
-      sv: 'Additional information ',
+      sv: '[SV] Lisätietoja',
       en: 'Additional information',
     },
     text: {
       fi: 'Kirjoita tähän kenttään tärkeiksi katsomiasi lisätietoja yhteistyöstä.',
-      sv: '',
+      sv: '[SV] Kirjoita tähän kenttään tärkeiksi katsomiasi lisätietoja yhteistyöstä.',
       en: 'Please provide any additional information regarding the collaboration.',
     },
     optionData: {
@@ -763,7 +763,6 @@ const getQuestionData = async (): Promise<Question[]> => [
     title: {
       fi: 'Mikä muu yhteistyön muoto?',
       sv: '[SV] Mikä muu yhteistyön muoto?',
-      sv: '',
       en: 'Which other collaboration form?',
     },
     text: {
@@ -786,7 +785,7 @@ const getQuestionData = async (): Promise<Question[]> => [
     },
     text: {
       fi: 'Valitse listasta yhteistyöyliopistosi nimi.',
-      fi: '[SV] Valitse listasta yhteistyöyliopistosi nimi.',
+      sv: '[SV] Valitse listasta yhteistyöyliopistosi nimi.',
       en: 'Select your partner university from the list.',
     },
     optionData: {
