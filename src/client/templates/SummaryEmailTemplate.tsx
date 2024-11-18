@@ -3,6 +3,26 @@ import React from 'react'
 import { Locales } from '@backend/types'
 
 const SummaryEmailTemplate = ({ language }: { language: keyof Locales }) => {
+  if (language === 'sv') {
+    return (
+      <div>
+        <p>[SV] Hello</p>
+
+        <p>
+          [SV] You have completed an international collaboration risk assessment, and
+          the results are available below this message. You may make use of the
+          results in any way necessary. Pleas note that you may renew the
+          assessment, if there are material changes in your collaboration. You
+          will also get an update, should conditions change significantly. If
+          necessary, please contact risk-i@helsinki.
+        </p>
+
+        <p>**********</p>
+        <br />
+      </div>
+    )
+  }
+
   if (language === 'en') {
     return (
       <div>

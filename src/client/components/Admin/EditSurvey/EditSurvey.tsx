@@ -94,6 +94,7 @@ const EditSurvey = ({
   survey: Survey
 }) => (
   <Box display="flex">
+    <SurveyItem language={'sv' as keyof Locales} survey={survey} />
     <SurveyItem language={'fi' as keyof Locales} survey={survey} />
     <SurveyItem language={language} survey={survey} />
   </Box>

@@ -154,6 +154,7 @@ const EditQuestion = ({
         onSubmit={handleDelete}
       />
       <Box mb={5} display="flex">
+        <QuestionItem language={'sv' as keyof Locales} question={question} />
         <QuestionItem language={'fi' as keyof Locales} question={question} />
         <QuestionItem language={language} question={question} />
       </Box>

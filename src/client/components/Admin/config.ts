@@ -6,7 +6,7 @@ export const recommendationTypes: InfoType[] = [
     id: 'common',
     title: {
       fi: 'Yleinen',
-      sv: 'Yleinen',
+      sv: '[SV] Yleinen',
       en: 'Common',
     },
   },

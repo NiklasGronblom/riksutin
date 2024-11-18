@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const Locales = z.object({
   fi: z.string().nonempty(),
-  sv: z.string(),
+  sv: z.string().nonempty(),
   en: z.string().nonempty(),
 })
 

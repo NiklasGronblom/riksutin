@@ -130,6 +130,12 @@ const EditOptions = ({
         option={option}
         optionNumber={optionNumber}
         question={question}
+        language={'sv' as keyof Locales}
+      />
+      <OptionItem
+        option={option}
+        optionNumber={optionNumber}
+        question={question}
         language={'fi' as keyof Locales}
       />
       <OptionItem

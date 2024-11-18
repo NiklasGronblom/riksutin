@@ -16,7 +16,7 @@ export const NewResultZod = z.object({
   optionLabel: z.string().nonempty(),
   isSelected: z.object({
     fi: z.string().nonempty(),
-    sv: z.string(),
+    sv: z.string().nonempty(),
     en: z.string().nonempty(),
   }),
   data: z.record(
@@ -34,7 +34,7 @@ export type NewResult = z.infer<typeof NewResultZod>
 export const UpdatedResultZod = z.object({
   isSelected: z.object({
     fi: z.string().nonempty(),
-    sv: z.string(),
+    sv: z.string().nonempty(),
     en: z.string().nonempty(),
   }),
   data: z.record(
