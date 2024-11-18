@@ -166,7 +166,7 @@ const getResultData = (): Result[] => [
     data: {
       title: {
         fi: 'Akateeminen vapaus, 1',
-        sv: 'Akateeminen vapaus, 1',
+        sv: '[SV] Akateeminen vapaus, 1',
         en: 'Academic freedom, 1',
       },
     },
@@ -557,7 +557,7 @@ const getResultData = (): Result[] => [
     data: {
       title: {
         fi: 'Eettisyys, 3',
-        sv: 'Eettisyys, 3',
+        sv: '[SV] Eettisyys, 3',
         en: 'Ethics, 3',
       },
     },
