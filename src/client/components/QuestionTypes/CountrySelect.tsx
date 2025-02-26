@@ -1,13 +1,12 @@
-import React from 'react'
 import { Controller } from 'react-hook-form'
 import { Autocomplete, Box, TextField } from '@mui/material'
 
 import { useTranslation } from 'react-i18next'
 
-import { Locales } from '@backend/types'
+import type { Locales } from '@types'
+import type { InputProps } from '@client/types'
 
 import useCountries from '../../hooks/useCountries'
-import { InputProps } from '../../types'
 
 const CountrySelect = ({ control, question, children }: InputProps) => {
   const { countries = [] } = useCountries()

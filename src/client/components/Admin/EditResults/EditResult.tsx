@@ -1,11 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import { Box, Button } from '@mui/material'
 import { enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
 
-import { Locales, Result } from '@backend/types'
+import type { Locales, Result } from '@types'
 
 import { useEditResultMutation } from '../../../hooks/useResultMutation'
 

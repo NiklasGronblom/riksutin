@@ -1,33 +1,58 @@
-export const appName = 'Riskiarviointi'
+import implementationSpecific from '@userconfig'
 
-export const contactEmail = ''
-
-export const supportEmail = 'grp-int-risks@helsinki.fi'
-
-export const inDevelopment = process.env.NODE_ENV === 'development'
-
-export const inStaging = process.env.REACT_APP_STAGING === 'true'
-
-export const inProduction = !inStaging && process.env.NODE_ENV === 'production'
-
+// App state
 export const inE2EMode = process.env.REACT_APP_E2E === 'true'
 
-export const GIT_SHA = process.env.REACT_APP_GIT_SHA || ''
+export const inDevelopment = process.env.NODE_ENV === 'development'
+export const inStaging = process.env.REACT_APP_STAGING === 'true'
+export const inAcualStaging = process.env.ACUAL_STAGING === 'true'
+export const inProduction = !inStaging && process.env.NODE_ENV === 'production'
 
-export const PUBLIC_URL = process.env.PUBLIC_URL || ''
+// Config
+export interface InstanceExports {
+  appName: string
+  contactEmail: string
+  supportEmail: string
 
-export const DEFAULT_SURVEY_NAME =
-  process.env.DEFAULT_SURVEY_NAME || 'testSurvey'
+  DEFAULT_SURVEY_NAME: string
+  PUBLIC_URL: string
+  FULL_URL: string
 
-export const FORM_DATA_KEY = 'riksutin_local_save'
+  FORM_DATA_KEY: string
+  SESSION_TOKEN: string
+  LOCATION_KEY: string
+}
 
-export const SESSION_TOKEN = 'riksutin_session_token'
+const DEFAULT_URL = 'http://localhost:3000'
+const defaults: InstanceExports = {
+  appName: 'Riskiarviointi',
+  contactEmail: '',
+  supportEmail: 'grp-int-risks@helsinki.fi',
 
-export const LOCATION_KEY = 'riksutin_session_location'
+  DEFAULT_SURVEY_NAME: process.env.DEFAULT_SURVEY_NAME ?? 'testSurvey',
+  PUBLIC_URL: process.env.PUBLIC_URL ?? '',
+  FULL_URL: DEFAULT_URL,
 
-// eslint-disable-next-line no-nested-ternary
-export const FULL_URL = inProduction
-  ? 'https://risk-i.helsinki.fi'
-  : inStaging
-  ? 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi'
-  : 'http://localhost:3000'
+  FORM_DATA_KEY: 'riksutin_local_save',
+  SESSION_TOKEN: 'riksutin_session_token',
+  LOCATION_KEY: 'riksutin_session_location',
+}
+
+// Extend config with preferences
+export const {
+  appName,
+  contactEmail,
+  supportEmail,
+
+  DEFAULT_SURVEY_NAME,
+  PUBLIC_URL,
+  FULL_URL,
+
+  FORM_DATA_KEY,
+  SESSION_TOKEN,
+  LOCATION_KEY,
+} = Object.assign(defaults, implementationSpecific)
+
+//
+export const SENTRY_DNS = 'https://144f4b59d562a36afcdca13de964eb9a@toska.cs.helsinki.fi/3'
+export const SENTRY_GIT_SHA = process.env.REACT_APP_GIT_SHA

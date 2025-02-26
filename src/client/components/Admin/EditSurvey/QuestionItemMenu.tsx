@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
@@ -13,7 +13,7 @@ import {
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import EditIcon from '@mui/icons-material/Edit'
 
-import { Question } from '@backend/types'
+import type { Question } from '@types'
 
 interface QuestionMenuProps {
   question: Question
@@ -22,7 +22,7 @@ interface QuestionMenuProps {
 const QuestionItemMenu = ({ question }: QuestionMenuProps) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const open = Boolean(anchorEl)
 

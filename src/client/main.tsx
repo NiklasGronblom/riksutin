@@ -1,4 +1,4 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -11,16 +11,17 @@ import initializeSentry from './util/sentry'
 import initializeI18n from './util/il18n'
 
 initializeSentry()
-initializeI18n()
+// HACK:
+initializeI18n().catch(_ => {})
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <QueryClientProvider client={queryClient}>
       <CssBaseline>
         <Router />
       </CssBaseline>
       <ReactQueryDevtools position="bottom-right" />
     </QueryClientProvider>
-  </React.StrictMode>
+  </StrictMode>
 )

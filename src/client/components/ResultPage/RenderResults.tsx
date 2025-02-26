@@ -1,5 +1,6 @@
-import React from 'react'
 import { Box } from '@mui/material'
+
+import type { RiskData } from '@types'
 
 import useSurvey from '../../hooks/useSurvey'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
@@ -7,7 +8,6 @@ import useResultRefCallback from '../../hooks/useResultRefCallback'
 import RiskTable from './RiskTable'
 
 import RenderAnswers from './RenderAnswers'
-import { RiskData } from '../../types'
 
 const RenderResults = ({ riskData }: { riskData: RiskData }) => {
   const { survey } = useSurvey()

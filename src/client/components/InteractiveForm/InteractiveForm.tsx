@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 import { Box, Grid } from '@mui/material'
+
+import { FORM_DATA_KEY, LOCATION_KEY } from '@config'
+import type { FormValues, RiskData } from '@types'
 
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
@@ -16,8 +19,6 @@ import Results from '../ResultPage/Results'
 import { useResultData } from '../../contexts/ResultDataContext'
 
 import styles from '../../styles'
-import { FormValues, RiskData } from '../../types'
-import { FORM_DATA_KEY, LOCATION_KEY } from '../../../config'
 
 const InteractiveForm = () => {
   const { survey, isLoading } = useSurvey()

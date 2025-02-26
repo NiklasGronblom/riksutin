@@ -1,21 +1,14 @@
-import React from 'react'
 import MDEditor from '@uiw/react-md-editor'
-import {
-  Control,
-  Controller,
-  FieldError,
-  FieldErrorsImpl,
-  Merge,
-} from 'react-hook-form'
+import { Control, Controller, FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
 import { Box, InputLabel, TextField, Typography } from '@mui/material'
-import { Locales } from '@backend/types'
+
+import type { Locales } from '@types'
 
 // This component is used inside RHF form element
 export const DialogLocalesField = ({
   value,
   inputlabel,
   control,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   error,
 }: {
   value: string
@@ -48,8 +41,8 @@ export const DialogLocalesField = ({
     >
       {inputlabel}
     </InputLabel>
-    {['fi', 'sv', 'en'].map((language) => {
-      const isError = error && error[language as keyof Locales]
+    {['fi', 'sv', 'en'].map(language => {
+      const isError = error?.[language as keyof Locales]
 
       return (
         <Controller
@@ -70,9 +63,7 @@ export const DialogLocalesField = ({
                 <Typography ml={1}>{language}</Typography>
               </Typography>
               {isError && (
-                <Typography sx={{ my: 2, color: '#d32f2f' }}>
-                  {error[language as keyof Locales]?.message}
-                </Typography>
+                <Typography sx={{ my: 2, color: '#d32f2f' }}>{error[language as keyof Locales]?.message}</Typography>
               )}
               <MDEditor {...field} data-color-mode="light" height={200} />
             </Box>

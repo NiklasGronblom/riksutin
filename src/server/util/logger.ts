@@ -3,19 +3,17 @@ import os from 'os'
 import winston from 'winston'
 import { WinstonGelfTransporter } from 'winston-gelf-transporter'
 
-import { inProduction } from '../../config'
+import { inProduction } from '@config'
 
 const { combine, timestamp, printf, splat } = winston.format
 
-const transports = []
+const transports: winston.transport[] = []
 
 transports.push(new winston.transports.File({ filename: 'debug.log' }))
 
 if (!inProduction) {
   const devFormat = printf(
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    ({ level, message, timestamp, ...rest }) =>
-      `${timestamp} ${level}: ${message} ${JSON.stringify(rest)}`
+    ({ level, message, timestamp: time, ...rest }) => `${time} ${level}: ${message} ${JSON.stringify(rest)}`
   )
 
   transports.push(

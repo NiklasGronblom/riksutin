@@ -1,6 +1,8 @@
 import Parser from 'rss-parser'
 import jsdom from 'jsdom'
 
+type SafetyLevel = [string, number]
+
 const fetchSafetyLevelData = async (code: string) => {
   const { JSDOM } = jsdom
 
@@ -18,7 +20,7 @@ const fetchSafetyLevelData = async (code: string) => {
     const dom = new JSDOM(element[0].encoded)
     const safetyLevel = dom.window.document.querySelector('p')?.textContent
 
-    const safetyLevels = [
+    const safetyLevels: SafetyLevel[] = [
       ['Noudata tavanomaista varovaisuutta', 1],
       ['Noudata erityistä varovaisuutta', 2],
       ['Vältä tarpeetonta matkustamista', 2],
@@ -26,8 +28,7 @@ const fetchSafetyLevelData = async (code: string) => {
       ['Poistu välittömästi maasta', 3],
     ]
 
-    const safetyLevelRisk =
-      safetyLevels.find((level) => level[0] === safetyLevel)?.[1] || null
+    const safetyLevelRisk = safetyLevels.find(level => level[0] === safetyLevel)?.[1] ?? null
 
     return safetyLevelRisk
   } catch (error) {

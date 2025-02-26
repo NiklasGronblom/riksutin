@@ -1,14 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable no-nested-ternary */
-import React, { useMemo, useState } from 'react'
-import {
-  MRT_Row,
-  MaterialReactTable,
-  useMaterialReactTable,
-  type MRT_ColumnDef,
-} from 'material-react-table'
+import { useMemo, useState } from 'react'
+import { MRT_Row, MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table'
 import { Box, Button, IconButton, Typography } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
@@ -23,36 +14,30 @@ import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '../../../util/organisations'
 import createTableData from './utils'
 
+import type { TableValues } from './utils'
+
 const { riskColors } = styles
 
-type TableValues = {
-  [key: string]: any
+type TableProps = {
+  tableValues: TableValues[]
+  questionTitles: TableValues
 }
 
-const additionalColumnNames = {
+const additionalColumnNames: TableValues = {
   id: 'ID',
   date: 'Päivämäärä',
   total: 'Kokonaisriskitaso',
   faculty: 'Tiedekunta',
 }
 
-const Table = ({
-  tableValues,
-  questionTitles,
-}: {
-  tableValues: TableValues[]
-  questionTitles: { [key: string]: string }
-}) => {
+const Table = ({ tableValues, questionTitles }: TableProps) => {
   const deleteMutation = useDeleteEntryMutation()
 
   const columns = useMemo<MRT_ColumnDef<TableValues>[]>(
     () =>
       tableValues.length
-        ? Object.keys(tableValues[0]).map((columnId) => ({
-            header:
-              (questionTitles[columnId] ||
-                (additionalColumnNames as TableValues)[columnId]) ??
-              columnId,
+        ? Object.keys(tableValues[0]).map(columnId => ({
+            header: (questionTitles[columnId] || additionalColumnNames[columnId]) ?? columnId,
             accessorKey: columnId,
             id: columnId,
             Cell: ({ cell, row }) => (
@@ -60,12 +45,7 @@ const Table = ({
                 component="span"
                 sx={() => ({
                   ...(columnId === 'total' && {
-                    backgroundColor:
-                      cell.getValue<number>() === 1
-                        ? riskColors[1]
-                        : cell.getValue<number>() === 2
-                        ? riskColors[2]
-                        : riskColors[3],
+                    backgroundColor: riskColors[cell.getValue<number>()] ?? riskColors[3],
                     borderRadius: '0.25rem',
                     fontWeight: 'bold',
                     p: '0.75rem',
@@ -73,9 +53,7 @@ const Table = ({
                 })}
               >
                 {columnId === '3' ? (
-                  <Link to={`/admin/entry/${row.getValue('id')}`}>
-                    {cell.getValue<string>()}
-                  </Link>
+                  <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
                 ) : (
                   cell.getValue<number>()
                 )}
@@ -88,16 +66,7 @@ const Table = ({
 
   const columnIds = Object.keys(tableValues[0])
 
-  const [columnOrder, setColumnOrder] = useState([
-    '3',
-    'date',
-    'total',
-    '1',
-    'faculty',
-    ...columnIds,
-  ])
-
-  if (!columnOrder) return null
+  const [columnOrder, setColumnOrder] = useState(['3', 'date', 'total', '1', 'faculty', ...columnIds])
 
   const handleDeleteRiskAssessment = (row: MRT_Row<TableValues>) => {
     // eslint-disable-next-line no-alert
@@ -118,19 +87,15 @@ const Table = ({
     }${date.getFullYear()}_${date.getHours()}${date.getMinutes()}${date.getSeconds()}`
     const fileName = `risk_i_summary_${timeStamp}.xlsx`
 
-    const data = rows.map((r) => Object.values(r.original))
-    const sheetData = [
-      Object.values(questionTitles).concat(
-        Object.values(additionalColumnNames)
-      ),
-    ].concat(data)
+    const data = rows.map(r => Object.values(r.original))
+    const sheetData = [Object.values(questionTitles).concat(Object.values(additionalColumnNames))].concat(data)
     const worksheet = utils.json_to_sheet(sheetData)
     const workbook = utils.book_new()
     utils.book_append_sheet(workbook, worksheet, 'Riskiarviot')
     writeFile(workbook, fileName, { compression: true })
   }
 
-  const table = useMaterialReactTable({
+  const tableInstance = useMaterialReactTable({
     columns,
     data: tableValues,
     enableColumnOrdering: true,
@@ -162,7 +127,6 @@ const Table = ({
       columnOrder,
     },
     onColumnOrderChange: setColumnOrder,
-    // eslint-disable-next-line @typescript-eslint/no-shadow
     renderTopToolbarCustomActions: ({ table }) => (
       <Box
         sx={{
@@ -174,9 +138,7 @@ const Table = ({
       >
         <Button
           disabled={table.getPrePaginationRowModel().rows.length === 0}
-          onClick={() =>
-            handleExportRows(table.getPrePaginationRowModel().rows)
-          }
+          onClick={() => handleExportRows(table.getPrePaginationRowModel().rows)}
           startIcon={<FileDownloadIcon />}
           variant="outlined"
         >
@@ -186,7 +148,7 @@ const Table = ({
     ),
   })
 
-  return <MaterialReactTable table={table} />
+  return <MaterialReactTable table={tableInstance} />
 }
 
 const Summary = () => {
@@ -198,9 +160,7 @@ const Summary = () => {
 
   const organisations = faculties.concat(extraOrganisations)
 
-  const entriesWithData = entries.filter(
-    (entry) => entry.data.answers && entry.data.country && entry.data.risks
-  )
+  const entriesWithData = entries.filter(entry => entry.data.answers && entry.data.country && entry.data.risks)
 
   if (entriesWithData.length === 0)
     return (
@@ -213,9 +173,7 @@ const Summary = () => {
 
   const tableData = createTableData(entriesWithData, questions, organisations)
 
-  const questionTitles = Object.fromEntries(
-    questions.map((q) => [q.id.toString(), q.title.fi])
-  )
+  const questionTitles = Object.fromEntries(questions.map(q => [q.id.toString(), q.title.fi]))
 
   return (
     <>

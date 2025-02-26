@@ -1,17 +1,14 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 
-import { Locales } from '@backend/types'
+import type { Locales } from '@types'
+import type { Survey } from '@client/types'
+import { UpdatedSurveyInfo } from '@validators/survey'
 
 import { useEditSurveyMutation } from '../../../hooks/useSurveyMutation'
-
-import { Survey } from '../../../types'
-
-import { UpdatedSurveyInfo } from '../../../../validators/survey'
 
 const SurveyItem = ({
   language,

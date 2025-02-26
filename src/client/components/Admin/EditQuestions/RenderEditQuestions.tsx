@@ -1,4 +1,3 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
@@ -6,7 +5,8 @@ import { Box } from '@mui/material'
 import { QuestionSelect } from '../Select'
 
 const RenderEditQuestions = () => {
-  const { t } = useTranslation()
+  const { t: _ } = useTranslation()
+
   return (
     <Box sx={{ mx: 2, mt: 8 }}>
       <Box

@@ -1,17 +1,18 @@
 import jsdom from 'jsdom'
 
+import logger from '../../util/logger'
+
 import { set, get } from '../../util/redis'
 
 const baseUrl = 'https://whed.net'
 
 const fetchData = async (countryName: string) => {
-  // eslint-disable-next-line no-param-reassign
   if (countryName === 'United States') countryName = 'United States of America'
 
   const url = `${baseUrl}/results_institutions.php`
   const key = `${url}?country=${countryName}`
 
-  const cached = await get(key)
+  const cached: string | null = await get(key)
   if (cached) return cached
 
   const formdata = new FormData()
@@ -35,15 +36,16 @@ const parseHTML = (html: string): string[] => {
   const { JSDOM } = jsdom
   const dom = new JSDOM(html)
 
+  const filterList = ['Sort by:', 'Results per page:']
   const universities = dom.window.document.querySelectorAll('h3')
 
-  const filterList = ['Sort by:', 'Results per page:']
-
   const universityNames = [...universities]
-    .map((university) => university?.textContent?.trim())
-    .filter((name) => name && !filterList.includes(name)) as string[]
+    .map(university => university?.textContent?.trim())
+    .filter(name => !!name) as string[]
 
-  return universityNames
+  const filteredUniversityNames = universityNames.filter(name => !filterList.includes(name))
+
+  return filteredUniversityNames
 }
 
 const getCountryUniversities = async (countryName: string | undefined) => {
@@ -55,7 +57,7 @@ const getCountryUniversities = async (countryName: string | undefined) => {
 
     return universityNames
   } catch (error) {
-    console.log(error)
+    logger.error(error)
     return []
   }
 }

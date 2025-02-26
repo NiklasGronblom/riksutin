@@ -1,5 +1,5 @@
-import React from 'react'
 import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import {
   Box,
   FormControl,
@@ -8,10 +8,8 @@ import {
   FormHelperText,
 } from '@mui/material'
 
-import { MultipleChoiceType, Locales } from '@backend/types'
-
-import { useTranslation } from 'react-i18next'
-import { InputProps } from '../../types'
+import type { MultipleChoiceType, Locales } from '@types'
+import type { InputProps } from '@client/types'
 
 const MultiChoice = ({ control, question, children, language }: InputProps) => {
   const { t } = useTranslation()

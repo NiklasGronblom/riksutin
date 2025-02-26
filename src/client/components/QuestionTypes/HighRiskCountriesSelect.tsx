@@ -1,12 +1,11 @@
-import React from 'react'
 import { Controller } from 'react-hook-form'
 import { Autocomplete, Box, TextField } from '@mui/material'
 
 import { useTranslation } from 'react-i18next'
 
-import { Locales } from '@backend/types'
+import type { Locales } from '@types'
+import type { InputProps } from '@client/types'
 
-import { InputProps } from '../../types'
 import { useHighRiskCountries } from '../../hooks/useCountries'
 
 const HighRiskCountrySelect = ({ control, question, children }: InputProps) => {
@@ -30,10 +29,7 @@ const HighRiskCountrySelect = ({ control, question, children }: InputProps) => {
               multiple
               disablePortal
               id={`select-${question.id.toString()}`}
-              options={
-                // eslint-disable-next-line no-nested-ternary
-                countries.map((country) => country.name)
-              }
+              options={countries.map((country) => country.name)}
               getOptionLabel={(option) => option}
               onChange={(e, data) => onChange(data)}
               sx={{ width: '50%' }}

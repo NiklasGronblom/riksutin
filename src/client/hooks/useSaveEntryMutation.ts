@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid'
 import { useMutation } from 'react-query'
 
-import { Entry } from '@backend/db/models'
-import { FormValues } from '../types'
+import { SESSION_TOKEN } from '@config'
+
+import { Entry } from '@dbmodels'
+import type { FormValues } from '@types'
 
 import apiClient from '../util/apiClient'
-
-import { SESSION_TOKEN } from '../../config'
 
 export const useSaveEntryMutation = (surveyId: number | undefined) => {
   const mutationFn = async (data: FormValues) => {

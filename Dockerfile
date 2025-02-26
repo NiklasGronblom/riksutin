@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/nodejs-20-minimal
+FROM node:20
 
 ENV TZ="Europe/Helsinki"
 
@@ -16,13 +16,15 @@ ENV REACT_APP_E2E=$E2E
 ARG STAGING
 ENV REACT_APP_STAGING=$STAGING
 
-# Setup
-COPY package* ./
-RUN npm ci -f --omit-dev --ignore-scripts
-COPY . .
+ARG ACUAL_STAGING
+ENV ACUAL_STAGING=$ACUAL_STAGING
 
+# Setup
+COPY . .
+RUN npm ci
 RUN npm run build
 
-EXPOSE 8000
+ARG NPM_COMMAND="start:prod"
+ENV NPM_COMMAND=${NPM_COMMAND}
 
-CMD ["npm", "run", "start:prod"]
+ENTRYPOINT npm run $NPM_COMMAND
